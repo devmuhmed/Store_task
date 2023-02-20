@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name_ar');
             $table->string('name_en');
             $table->text('description');
-            $table->integer('slug');
+            $table->string('slug');
             $table->tinyInteger('active')->default(0);
             $table->softDeletes();
             $table->timestamps();

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('name_en');
             $table->tinyInteger('active')->default(0);
             $table->foreignId('parent_id')->constrained('categories')->cascadeOnDelete();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

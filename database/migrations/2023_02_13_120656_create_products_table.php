@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('stock');
             $table->string('type');
-            $table->integer('slug');
+            $table->string('slug');
             $table->string('name');
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->foreignId('game_id')->constrained('games')->cascadeOnDelete();
