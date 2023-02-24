@@ -1,6 +1,6 @@
 <?php
 
-function successResponse($message, $data = null, $status = 200)
+function successResponse($data = null, $message = 'Success', $status = 200)
 {
     $response = [
         'status' => true,

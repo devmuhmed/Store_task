@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ApiCategoryRequest;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -11,41 +13,26 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return successResponse('success',$categories);
+        $response = CategoryResource::collection($categories);
+        return successResponse($response);
     }
 
-    public function store(Request $request)
+    public function store(ApiCategoryRequest $request,Category $category)
     {
-        $validator = validator()->make($request->all(),[
-            'name_ar' => 'required',
-            'name_en' => 'required',
-        ]);
-        if($validator->fails()){
-            return failedResponse($validator->errors()->first());
-        }
-        $category = Category::create($request->all());
-        return successResponse('success',$category);
+        $category->create($request->all());
+        return successResponse($category);
     }
 
-    public function update(Request $request,$id)
+    public function update(ApiCategoryRequest $request,Category $category)
     {
-        $validator = validator()->make($request->all(),[
-            'name_ar' => 'required',
-            'name_en' => 'required',
-        ]);
-        if($validator->fails()){
-            return failedResponse($validator->errors()->first());
-        }
-        $category = Category::findOrFail($id);
         $category->update($request->all());
-        return successResponse('success',$category);
+        return successResponse($category);
     }
 
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $category = Category::findOrFail($id);
         $category->delete();
-        return successResponse('success');
+        return successResponse($category);
     }
 
 
