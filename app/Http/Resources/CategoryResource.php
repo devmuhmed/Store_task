@@ -19,6 +19,7 @@ class CategoryResource extends JsonResource
             'name_en' => $this->name_en,
             'parent_id' => $this->parent_id,
             'active' => $this->active,
+            'products' => GameResource::collection($this->whenLoaded('products')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
