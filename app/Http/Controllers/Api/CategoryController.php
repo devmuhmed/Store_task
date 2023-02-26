@@ -14,26 +14,25 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $response = CategoryResource::collection($categories);
-        return successResponse($response);
+        return apiResponse($response);
     }
 
-    public function store(ApiCategoryRequest $request,Category $category)
+    public function store(ApiCategoryRequest $request)
     {
-        $category->create($request->all());
-        return successResponse($category);
+        $category = Category::create($request->all());
+        return apiResponse($category);
     }
 
     public function update(ApiCategoryRequest $request,Category $category)
     {
         $category->update($request->all());
-        return successResponse($category);
+        return apiResponse($category);
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
-        return successResponse($category);
+        return apiResponse($category);
     }
-
 
 }
