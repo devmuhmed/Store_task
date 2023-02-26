@@ -22,4 +22,5 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api'],function(){
     require __DIR__ . '/category.php';
     require __DIR__ . '/game.php';
     require __DIR__ . '/product.php';
+    require __DIR__ . '/order.php';
 });
